@@ -1,14 +1,14 @@
 package net.earelin.boxes.mapper;
 
-import net.earelin.boxes.reader.ValueReader;
+import net.earelin.boxes.reader.ColumnReader;
 
 import java.lang.reflect.Method;
 
 public class ColumnMapper {
-    private final ValueReader<?> reader;
+    private final ColumnReader<?> reader;
     private final Method setter;
 
-    public ColumnMapper(ValueReader<?> reader, Method setter) {
+    public ColumnMapper(ColumnReader<?> reader, Method setter) {
         this.reader = reader;
         this.setter = setter;
     }

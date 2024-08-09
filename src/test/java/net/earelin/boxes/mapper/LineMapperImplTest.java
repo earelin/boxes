@@ -2,6 +2,7 @@ package net.earelin.boxes.mapper;
 
 import lombok.Data;
 import net.earelin.boxes.LineMapper;
+import net.earelin.boxes.reader.type.TypeConverterFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LineMapperImplTest {
     private static final String LINE = "000000387        John       Smith33";
 
+    private TypeConverterFactory typeConverterFactory;
+
     private LineMapper lineMapper;
 
     @BeforeEach
     void setUp() {
-        lineMapper = new LineMapperImpl();
+        lineMapper = new LineMapperImpl(new TypeConverterFactory());
     }
 
     @Test

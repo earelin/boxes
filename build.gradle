@@ -13,9 +13,12 @@ repositories {
 
 ext {
     lombokVersion = '1.18.34'
+    mockitoVersion = '5.12.0'
 }
 
 dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.16.0'
+
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
@@ -24,6 +27,8 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.assertj:assertj-core:3.26.3'
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
 }
 
 publishing {
