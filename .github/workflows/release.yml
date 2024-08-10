@@ -15,7 +15,7 @@ jobs:
           java-version: 21
           cache: gradle
       - name: Publish package
-        run: ./gradlew -Pversion=${VERSION} publishToSonatype closeAndReleaseSonatypeStagingRepository
+        run: ./gradlew -Pversion=${VERSION} publishToSonatype
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
