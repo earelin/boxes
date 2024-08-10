@@ -7,7 +7,6 @@ plugins {
 }
 
 group = 'net.earelin'
-version = '0.0.1-SNAPSHOT'
 rootProject.description = 'Reads text files with fixed length columns.'
 
 sourceCompatibility = 21

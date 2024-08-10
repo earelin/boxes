@@ -1,7 +1,7 @@
 name: Publish package to the Maven Central Repository
 on:
   release:
-    types: [created]
+    types: [published]
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -15,9 +15,10 @@ jobs:
           java-version: 21
           cache: gradle
       - name: Publish package
-        run: ./gradlew publish
+        run: ./gradlew -Pversion=${VERSION} publishToSonatype closeAndReleaseSonatypeStagingRepository
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-          GPG_SIGNING_KEY: ${{ GPG_SIGNING_KEY }}
-          GPG_SIGNING_PASSPHRASE: ${{ GPG_SIGNING_PASSPHRASE }}
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          GPG_SIGNING_PASSPHRASE: ${{ secrets.GPG_SIGNING_PASSPHRASE }}
+          VERSION: ${{ github.event.release.tag_name }}
