@@ -1,11 +1,17 @@
 plugins {
-    id 'java-library'
+    id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
     id 'jacoco'
+    id 'java-library'
     id 'maven-publish'
+    id 'signing'
 }
 
 group = 'net.earelin'
-version = '1.0.0-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'
+rootProject.description = 'Reads text files with fixed length columns.'
+
+sourceCompatibility = 21
+targetCompatibility = 21
 
 repositories {
     mavenCentral()
@@ -14,6 +20,45 @@ repositories {
 ext {
     lombokVersion = '1.18.34'
     mockitoVersion = '5.12.0'
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+
+nexusPublishing {
+    repositories {
+        sonatype {  //only for users registered in Sonatype after 24 Feb 2021
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+            username = System.getenv("OSSRH_USERNAME")
+            password = System.getenv("OSSRH_TOKEN")
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = 'Boxes'
+                description = rootProject.description
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/earelin/boxes.git'
+                    developerConnection = 'scm:git:ssh://github.com/earelin/boxes.git'
+                    url = 'https://github.com/earelin/boxes.git'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
@@ -31,12 +76,11 @@ dependencies {
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
+signing {
+    def signingKey = System.getenv("GPG_SIGNING_KEY")
+    def signingPassword = System.getenv("GPG_SIGNING_PASSPHRASE")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.mavenJava
 }
 
 test {
