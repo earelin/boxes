@@ -6,10 +6,11 @@
 
     <groupId>net.earelin</groupId>
     <artifactId>boxes</artifactId>
-    <version>0.0.14-SNAPSHOT</version>
+    <version>0.0.15-SNAPSHOT</version>
 
     <name>boxes</name>
     <description>A fixed column text file mapper to objects.</description>
+    <url>https://github.com/earelin/boxes</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
