@@ -22,7 +22,7 @@ class LineMapperImplTest {
 
     @Test
     void should_read_a_line() {
-        assertThat(lineMapper.readLine(LINE, MappedObject.class))
+        assertThat(lineMapper.parseLine(LINE, MappedObject.class))
                 .isNotNull()
                 .extracting(
                         MappedObject::getId,

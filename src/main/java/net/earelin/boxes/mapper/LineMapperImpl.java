@@ -23,7 +23,7 @@ public class LineMapperImpl implements LineMapper {
     }
 
     @Override
-    public <T> T readLine(String line, Class<T> type) {
+    public <T> T parseLine(String line, Class<T> type) {
         T object = createObject(type);
 
         var columnMappers = getColumnMappers(type);

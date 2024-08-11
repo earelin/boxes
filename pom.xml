@@ -6,7 +6,7 @@
 
     <groupId>net.earelin</groupId>
     <artifactId>boxes</artifactId>
-    <version>0.0.15-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
 
     <name>boxes</name>
     <description>A fixed column text file mapper to objects.</description>
