@@ -13,12 +13,19 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-          cache: gradle
+          cache: maven
+      - uses: s4u/maven-settings-action@v3.0.0
+        with:
+          servers: |
+            [{
+              "id": "central",
+              "username": "${{ secrets.OSSRH_USERNAME }}",
+              "password": "${{ secrets.OSSRH_TOKEN }}"
+            }]
+      - name: Set project version
+        run: ./mvnw versions:set -DnewVersion=${{ github.event.release.tag_name }}
       - name: Publish package
-        run: ./gradlew -Pversion=${VERSION} publish
+        run: ./mvnw deploy
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
           GPG_SIGNING_PASSPHRASE: ${{ secrets.GPG_SIGNING_PASSPHRASE }}
-          VERSION: ${{ github.event.release.tag_name }}
