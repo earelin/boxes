@@ -20,7 +20,7 @@ jobs:
             [{
               "id": "central",
               "username": "${{ secrets.OSSRH_USERNAME }}",
-              "password": "${{ secrets.OSSRH_TOKEN }}"
+              "password": "${{ secrets.OSSRH_TOKEN }}",
               "passphrase": "${{ secrets.GPG_SIGNING_PASSPHRASE }}",
               "privateKey": "${{ secrets.GPG_SIGNING_KEY }}"    
             }]
