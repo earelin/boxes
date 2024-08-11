@@ -20,11 +20,12 @@ jobs:
             [{
               "id": "central",
               "username": "${{ secrets.OSSRH_USERNAME }}",
-              "password": "${{ secrets.OSSRH_TOKEN }}",
-              "passphrase": "${{ secrets.GPG_SIGNING_PASSPHRASE }}",
-              "privateKey": "${{ secrets.GPG_SIGNING_KEY }}"
+              "password": "${{ secrets.OSSRH_TOKEN }}"
             }]
       - name: Set project version
         run: ./mvnw versions:set -DnewVersion=${{ github.event.release.tag_name }}
       - name: Publish package
         run: ./mvnw deploy -Pcentral-maven-release
+        env:
+          SIGN_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          SIGN_KEY_PASS: ${{ secrets.GPG_SIGNING_PASSPHRASE }}
