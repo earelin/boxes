@@ -6,7 +6,7 @@
 
     <groupId>net.earelin</groupId>
     <artifactId>boxes</artifactId>
-    <version>0.0.10-SNAPSHOT</version>
+    <version>0.0.11-SNAPSHOT</version>
 
     <name>boxes</name>
     <description>A simple boxes.</description>
