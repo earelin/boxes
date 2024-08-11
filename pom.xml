@@ -6,10 +6,10 @@
 
     <groupId>net.earelin</groupId>
     <artifactId>boxes</artifactId>
-    <version>0.0.13-SNAPSHOT</version>
+    <version>0.0.14-SNAPSHOT</version>
 
     <name>boxes</name>
-    <description>A simple boxes.</description>
+    <description>A fixed column text file mapper to objects.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,6 +19,26 @@
         <lombok.version>1.18.34</lombok.version>
         <mockito.version>5.12.0</mockito.version>
     </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/earelin/boxes</url>
+        <connection>scm:git:https://github.com/earelin/boxes.git</connection>
+        <developerConnection>scm:git:ssh://github.com:earelin/boxes.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Xavier Carriba</name>
+            <email>xavier.carriba@gmail.com</email>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
