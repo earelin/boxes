@@ -27,5 +27,6 @@ jobs:
       - name: Publish package
         run: ./mvnw deploy -Pcentral-maven-release
         env:
+          SIGN_KEY_ID: ACE44DEF7790CB663564D06EDE25698B101E7B6D
           SIGN_KEY: ${{ secrets.GPG_SIGNING_KEY }}
           SIGN_KEY_PASS: ${{ secrets.GPG_SIGNING_PASSPHRASE }}
