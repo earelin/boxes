@@ -18,5 +18,5 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
-      - name: Build with Gradle
+      - name: Build
         run: ./mvnw install

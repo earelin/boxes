@@ -21,11 +21,12 @@ jobs:
               "id": "central",
               "username": "${{ secrets.OSSRH_USERNAME }}",
               "password": "${{ secrets.OSSRH_TOKEN }}"
+            },{
+              "id": "sign-key-id",
+              "passphrase": "${{ secrets.GPG_SIGNING_PASSPHRASE }}",
+              "privateKey": "${{ secrets.GPG_SIGNING_KEY }}"        
             }]
       - name: Set project version
         run: ./mvnw versions:set -DnewVersion=${{ github.event.release.tag_name }}
       - name: Publish package
         run: ./mvnw deploy
-        env:
-          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-          GPG_SIGNING_PASSPHRASE: ${{ secrets.GPG_SIGNING_PASSPHRASE }}
