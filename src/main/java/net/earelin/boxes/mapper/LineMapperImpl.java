@@ -8,15 +8,15 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 public class LineMapperImpl implements LineMapper {
-    private final Map<String, List<ColumnMapper>> columnMappersCache = new HashMap<>();
+    private final Map<String, List<ColumnMapper>> columnMappersCache = new ConcurrentHashMap<>();
     private final TypeConverterFactory typeConverterFactory;
 
     public LineMapperImpl(TypeConverterFactory typeConverterFactory) {

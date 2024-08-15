@@ -5,9 +5,12 @@ import java.util.Map;
 
 public class TypeConverterFactory {
     private static final Map<Class<?>, TypeConverter<?>> PREDEFINED_CONVERTERS = Map.of(
+            Boolean.class, new BooleanConverter(),
             String.class, new StringConverter(),
+            Integer.class, new IntegerConverter(),
             Long.class, new LongConverter(),
-            Integer.class, new IntegerConverter()
+            Float.class, new FloatConverter(),
+            Double.class, new DoubleConverter()
     );
 
     private final Map<Class<?>, TypeConverter<?>> converters = new HashMap<>(PREDEFINED_CONVERTERS);
