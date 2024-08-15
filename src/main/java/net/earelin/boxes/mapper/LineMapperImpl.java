@@ -13,8 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class LineMapperImpl implements LineMapper {
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
+public class LineMapperImpl implements LineMapper {
     private final Map<String, List<ColumnMapper>> columnMappersCache = new HashMap<>();
     private final TypeConverterFactory typeConverterFactory;
 
@@ -24,6 +25,10 @@ public class LineMapperImpl implements LineMapper {
 
     @Override
     public <T> T parseLine(String line, Class<T> type) {
+        if (isBlank(line)) {
+            return null;
+        }
+
         T object = createObject(type);
 
         var columnMappers = getColumnMappers(type);

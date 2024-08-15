@@ -14,6 +14,10 @@ public class ColumnReader<T> {
     }
 
     public T readValue(String line) {
+        if (line.length() < start || line.length() < start + length) {
+            return null;
+        }
+
         String column = line.substring(start, start + length);
         return converter.convert(column);
     }

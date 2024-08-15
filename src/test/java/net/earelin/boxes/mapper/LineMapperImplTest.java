@@ -5,11 +5,16 @@ import net.earelin.boxes.LineMapper;
 import net.earelin.boxes.reader.type.TypeConverterFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineMapperImplTest {
     private static final String LINE = "000000387        John       Smith33";
+    private static final String INCOMPLETE_LINE = "000000387        John";
 
     private TypeConverterFactory typeConverterFactory;
 
@@ -30,6 +35,27 @@ class LineMapperImplTest {
                         MappedObject::getSurname,
                         MappedObject::getAge)
                 .containsExactly(387L, "John", "Smith", 33);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"'   '"})
+    @EmptySource
+    @NullSource
+    void should_return_null_on_empty_line(String line) {
+        assertThat(lineMapper.parseLine(line, MappedObject.class))
+                .isNull();
+    }
+
+    @Test
+    void should_return_partial_result() {
+        assertThat(lineMapper.parseLine(INCOMPLETE_LINE, MappedObject.class))
+                .isNotNull()
+                .extracting(
+                        MappedObject::getId,
+                        MappedObject::getName,
+                        MappedObject::getSurname,
+                        MappedObject::getAge)
+                .containsExactly(387L, "John", null, null);
     }
 
     @Data
