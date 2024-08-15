@@ -1,7 +1,10 @@
 name: Publish package to the Maven Central Repository
+run-name: Release - ${{ github.event.release.tag_name }}
+
 on:
   release:
     types: [published]
+
 jobs:
   publish:
     runs-on: ubuntu-latest
