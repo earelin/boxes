@@ -1,4 +1,4 @@
-name: CI
+name: Continuous Integration
 run-name: CI - ${{ github.event.head_commit.message }}
 
 on:
