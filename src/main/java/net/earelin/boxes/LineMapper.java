@@ -9,7 +9,7 @@ public interface LineMapper {
      * Reads a line and create and object based on the type parameter annotations.
      * @param line The line to be parsed
      * @param type An annotated class
-     * @return Object with the readed values
+     * @return Object with the read values
      */
     <T> T parseLine(String line, Class<T> type);
 }

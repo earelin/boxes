@@ -15,7 +15,7 @@ public class TypeConverterFactory {
 
     private final Map<Class<?>, TypeConverter<?>> converters = new HashMap<>(PREDEFINED_CONVERTERS);
 
-    public void add(Class<?> type, TypeConverter<?> converter) {
+    public <T> void add(Class<T> type, TypeConverter<T> converter) {
         converters.put(type, converter);
     }
 

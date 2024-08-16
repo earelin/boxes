@@ -1,6 +1,7 @@
 package net.earelin.boxes;
 
 import net.earelin.boxes.mapper.LineMapperImpl;
+import net.earelin.boxes.reader.type.TypeConverter;
 import net.earelin.boxes.reader.type.TypeConverterFactory;
 
 /**
@@ -16,6 +17,11 @@ public class LineMapperBuilder {
 
     public LineMapper build() {
         return new LineMapperImpl(typeConverterFactory);
+    }
+
+    public <T> LineMapperBuilder withTypeConverter(Class<T> type, TypeConverter<T> converter) {
+        typeConverterFactory.add(type, converter);
+        return this;
     }
 
     private LineMapperBuilder(TypeConverterFactory typeConverterFactory) {
